@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Shopping-Spree</title>
+</head>
+
+<body>
+    <div class="shopping-container">
+        <header>
+            <h1>Shopping Spree</h1>
+            <input type="text" placeholder="Search for product">
+            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i><p>1</p></div>
+        </header>
+        <main>
+            <div class="shop-items" style="display: none;">
+                <!-- <div class="item">
+                    <img src="" alt="item-image">
+                    <h3>item name</h3>
+                    <button>Add to cart</button>
+                </div> -->
+            </div>
+            <div class="detail-container">
+                <button class="back-button">
+                    <i class="fa-solid fa-backward"></i>
+                </button>
+                <div class="item-detail">
+                    <div class="item-image-container">
+                        <img class="item-detail-image" src="" alt="item-image" />
+                        <p>item detail</p>
+                    </div>
+
+                    <div class="item-detail-info">
+                        <h2>Item Title</h2>
+                        <h3>price: $0.00</h3>
+
+                        <div class="buttons">
+                            <div class="item-count">
+                                <button class="subtract-item">-</button>
+                                <p>0</p>
+                                <button class="add-item">+</button>
+                            </div>
+                            <button class="buy-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

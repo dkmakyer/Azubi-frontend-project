@@ -1,0 +1,195 @@
+body {
+    box-sizing: border-box;/*take note to remove if item list looks funny*/
+    position: relative;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index: 0; 
+    background-color: #fff; 
+    color: white;
+    margin: 0;
+    height: 89vh;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("mall.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+header, .cart-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+header input{
+    width: 500px;
+    height: 20px;
+    outline: 0;
+    border: 0;
+    background-color: rgb(226, 219, 219);
+    color: rgb(0, 0, 0);
+    padding: 1rem;
+    border-radius: 5px;
+}
+header .cart-icon i{
+    font-size: 50px;
+    cursor: pointer;
+}
+header .cart-icon p{
+    font-size: 20px;
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    padding-left: 5px;
+    transform: translate(-35px, -13px);
+}
+.shop-items{
+    padding-left: 5rem;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.shop-items .item{
+    border-radius: 10px;
+    width: 230px;
+    height: 330px;
+    color: rgb(17, 12, 17);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1rem;
+}
+.shop-items .item button{
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    background-color: rgba(255, 11, 11, 0.8);
+    outline: 0;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.shop-items .item button:hover{
+    background-color: rgba(255, 11, 11, 0.5);
+    color: rgb(255, 255, 255);
+    width: 123px;
+}
+.shop-items .item img{
+    width: 150px;
+    height: 150px;
+}
+.shop-items .item h3{
+    width: 150px;
+}
+.detail-container{
+    position: relative;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 2rem 5rem 2rem 9rem;
+    padding: 5rem 5rem;
+    height: 400px;
+    width: 1000px;
+    border-radius: 5px;
+}
+.detail-container .back-button{
+    position: absolute;
+    top: 20px;
+    right: 100px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(231, 230, 230, 0.9);
+    border-radius: 50%;
+    border: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.detail-container .back-button:hover{
+    background-color: rgb(214, 214, 214);
+}
+ .item-detail{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 50px;
+}
+.item-image-container{
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.item-detail-image{
+    height: 50px;
+    width: 100px;
+    background-color: yellow;
+}
+.item-detail-info, .item-image-container{
+    width: 250px;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 5px;
+}
+.item-detail-info h2, .item-detail-info h3{
+    margin-bottom: 0.5rem;
+} 
+.buttons button{
+    height: 40px;
+    outline: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+.item-count button:nth-of-type(1){
+    color: black;
+}
+.item-count p{
+    border: 0;
+    display: flex;
+    align-items: center;
+    transform: translateY(-5px);
+}
+.item-count button:nth-of-type(2), .buy-button{
+    background-color: rgba(255, 0, 0, 0.8);
+}
+.item-count button:nth-of-type(2):hover, .buy-button:hover{
+    background-color: rgba(255, 0, 0, 0.4);
+}
+.buy-button{
+    max-width: 130px;
+}
+.item-count button{
+    width: 40px;
+    background-color: rgba(51, 51, 51, 0.3);
+}
+.buttons, .item-count{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+} 
