@@ -15,11 +15,13 @@
     <div class="shopping-container">
         <header>
             <h1>Shopping Spree</h1>
-            <input type="text" placeholder="Search for product">
-            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i><p>1</p></div>
+            <input class="search-input" type="text" placeholder="Search for product">
+            <div class="cart-icon"><i class="fa-solid fa-cart-shopping"></i>
+                <!-- <p></p> -->
+            </div>
         </header>
         <main>
-            <div class="shop-items" >
+            <div class="shop-items">
                 <!-- <div class="item">
                     <img src="" alt="item-image">
                     <h3>item name</h3>
@@ -49,6 +51,49 @@
                             <button class="buy-button">Add to Cart</button>
                         </div>
                     </div> -->
+                </div>
+            </div>
+            <div class="cart-container" style="display: none;">
+                <button class="cart-back-button">
+                    <i class="fa-solid fa-backward"></i>
+                </button>
+                <h2>Your Cart</h2>
+                <div class="cart-heading">
+                    <ul>
+                        <li>
+                            <h3>Product</h3>
+                        </li>
+                        <li>
+                            <h3>Price</h3>
+                        </li>
+                        <li>
+                            <h3>Quantity</h3>
+                        </li>
+                        <li>
+                            <h3>Sub-total</h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cart-items-container">
+                    <!-- <div class="cart-item">
+                        <ul>
+                          <li>
+                            <img class="cart-image" src="" alt="cart-image" />
+                            product.title
+                          </li>
+                          <li>$0.00</li>
+                          <li>
+                            quantity
+                          </li>
+                          <li>subtotal</li>
+                        </ul>
+                        <p class="delete-item"><i class="fa-solid fa-trash"></i></p> 
+                    </div> -->
+                </div>
+                <div class="cart-total">
+                    <h2>Cart Total</h2>
+                    <!-- <p ></p> -->
+                    <button>Proceed to Checkout</button>
                 </div>
             </div>
         </main>
