@@ -65,6 +65,9 @@ header .cart-icon p{
     grid-template-columns: repeat(4, 1fr);
     box-sizing: border-box;
 }
+#shop-items-heading, #detail-container-heading{
+    display: none;
+}
 .shop-items .item{
     border-radius: 10px;
     width: 230px;
