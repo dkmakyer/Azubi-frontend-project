@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             const data = await response.json();
             console.log(data);
-
+            
             //for the shop and details container
             const shopItems = document.querySelector(".shop-items");
             const detailsContainer = document.querySelector(".detail-container");
@@ -21,8 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const cartListContainer = document.querySelector(".cart-items-container")
             const cartTotalDiv = document.querySelector(".cart-total");
             
+            let cartList = [];
+
             //to search for item in the shop
             const searchInput =  document.querySelector(".search-input");
+
+            //function to render the individual items
             const renderShopItem = (product) => {
                 const itemDiv = document.createElement("div");
                 itemDiv.classList.add("item");
@@ -118,14 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         count++;
                         counter.innerText = count;
                     });
-
-
-
+                    
+                    
+                    
                     const addToCartButton = document.createElement("button");
                     addToCartButton.classList.add("buy-button");
                     addToCartButton.innerText = "Add to Cart";
                     cartDetailsButtonsDiv.appendChild(addToCartButton);
-
+                    
                     addToCartButton.addEventListener("click", () => {
                         if (count > 0) {
                             const existingItemIndex = cartList.findIndex(item => item.name === product.title);
@@ -140,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     image: product.image
                                 });
                             }
-
+                            
                             updateHeaderCount();
                             updateTotalPrice();
                             renderCartItem(product, count);
@@ -150,30 +154,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                 })
             }
-
-
+            
+            //function to render the cart items
             const renderCartItem = (product, quantity) => {
                 const cartItemDiv = document.createElement("div");
                 cartItemDiv.classList.add("cart-item");
                 cartListContainer.appendChild(cartItemDiv);
-
+                
                 const ulTag = document.createElement("ul");
                 cartItemDiv.appendChild(ulTag);
-
+                
                 const imageLi = document.createElement("li");
                 imageLi.innerText = product.title.split(" ").slice(0, 5).join(" ");
                 ulTag.appendChild(imageLi);
-
+                
                 const cartItemImageTag = document.createElement("img");
                 cartItemImageTag.classList.add("cart-image");
                 cartItemImageTag.setAttribute("src", product.image);
                 cartItemImageTag.setAttribute("alt", "cart-image");
                 imageLi.appendChild(cartItemImageTag);
-
+                
                 const priceLi = document.createElement("li");
                 priceLi.innerHTML = `$ ${product.price}`;
                 ulTag.appendChild(priceLi);
-
+                
                 const quantityLi = document.createElement("li");
                 quantityLi.innerText = quantity;
                 ulTag.appendChild(quantityLi);
@@ -191,8 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const deleteImage = document.createElement("i");
                 deleteImage.classList.add("fa-solid", "fa-trash");
                 deleteItem.appendChild(deleteImage);
-
-            
+                
+                
                 deleteImage.addEventListener("click", () => {
                     const index = cartList.findIndex(item => item.title === product.title);
                     if (index !== -1) {
@@ -203,8 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     cartListContainer.removeChild(cartItemDiv);//delete it from the ui
                 });
             };
-
-            let cartList = [];
+            
             
             const updateHeaderCount = () => {
                 let headerCartCount = document.querySelector(".cart-count");
@@ -228,10 +231,11 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             data.forEach(product => {
-                //creating the shop-items container using js
+                //populating the shop-items container using js
                 renderShopItem(product);
             });
 
+            //searching for items based on their names
             searchInput.addEventListener("input", (e) => {
                 const searchValue = e.target.value.toLowerCase();
 
@@ -245,9 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     renderShopItem(product);
                 })
                 if(filteredData.length === 0){
-                    const noResult = document.createElement("p");
-                    noResult.innerText = "No Items match your search.";
-                    shopItems.appendChild(noResult);
+                    shopItems.innerHTML = `<p>No Items match your search.</p>`;
                 }
             })
 
@@ -263,6 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 cartContainer.style.display = "none";
             })
 
+            //render the cart container when the cart image at the header is clicked
             headerCartIcon.addEventListener("click", () => {
                 shopItems.style.display = "none";
                 detailsContainer.style.display = "none";
@@ -275,6 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         } catch (err) {
             console.log("Error encountered during fetch:", err.message);
+            shopItems.innerHTML = `<p>Failed to load products. Please try again later.</p>`;
         }
     };
 
