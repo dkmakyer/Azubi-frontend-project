@@ -13,43 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const detailsContainer = document.querySelector(".detail-container");
             const detailsBackButton = document.querySelector(".back-button");
             const productDetails = document.querySelector(".item-detail");
-
+            
             //for the cart page or container
             const cartContainer = document.querySelector(".cart-container");
             const headerCartIcon = document.querySelector(".cart-icon");
             const cartBackButton = document.querySelector(".cart-back-button");
             const cartListContainer = document.querySelector(".cart-items-container")
             const cartTotalDiv = document.querySelector(".cart-total");
-            const searchInput =  document.querySelector(".search-input")
-
-
-            let cartList = [];
-            let subTotals = [];
-
-            const updateHeaderCount = () => {
-                let headerCartCount = document.querySelector(".cart-count");
-                if (!headerCartCount) {
-                    headerCartCount = document.createElement("p");
-                    headerCartCount.classList.add("cart-count");
-                    headerCartIcon.appendChild(headerCartCount);
-                }
-                headerCartCount.innerText = cartList.length;
-            }
-            const updateTotalPrice = () => {
-                const cartTotal = document.querySelector('.cart-total p');
-
-                // If the <p> element does not exist, create it
-                if (!cartTotal) {
-                    const newCartTotal = document.createElement("p");
-                    cartTotalDiv.appendChild(newCartTotal);
-                }
-                const totalPrice = cartList.reduce((total, item) => total + item.price * item.quantity, 0);
-                cartTotal.innerHTML = `$ ${totalPrice.toFixed(2)}`;
-            };
-
-
-            data.forEach(product => {
-                //creating the shop-items container using js
+            
+            //to search for item in the shop
+            const searchInput =  document.querySelector(".search-input");
+            const renderShopItem = (product) => {
                 const itemDiv = document.createElement("div");
                 itemDiv.classList.add("item");
 
@@ -175,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                 })
-            });
+            }
 
 
             const renderCartItem = (product, quantity) => {
@@ -209,8 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 let subTotal = (quantity * product.price).toFixed(2);
                 subTotalLi.innerHTML = `$ ${subTotal}`;
                 ulTag.appendChild(subTotalLi);
-                
-                subTotals.push(Number(subTotal));
 
                 const deleteItem = document.createElement("p");
                 deleteItem.classList.add("delete-item");
@@ -231,7 +203,54 @@ document.addEventListener("DOMContentLoaded", () => {
                     cartListContainer.removeChild(cartItemDiv);//delete it from the ui
                 });
             };
+
+            let cartList = [];
             
+            const updateHeaderCount = () => {
+                let headerCartCount = document.querySelector(".cart-count");
+                if (!headerCartCount) {
+                    headerCartCount = document.createElement("p");
+                    headerCartCount.classList.add("cart-count");
+                    headerCartIcon.appendChild(headerCartCount);
+                }
+                headerCartCount.innerText = cartList.length;
+            }
+
+            const updateTotalPrice = () => {
+                let cartTotal = document.querySelector('.cart-total p');
+
+                if (!cartTotal) {
+                    cartTotal = document.createElement("p");
+                    cartTotalDiv.appendChild(cartTotal);
+                }
+                const totalPrice = cartList.reduce((total, item) => total + item.price * item.quantity, 0);
+                cartTotal.innerHTML = `$ ${totalPrice.toFixed(2)}`;
+            };
+
+            data.forEach(product => {
+                //creating the shop-items container using js
+                renderShopItem(product);
+            });
+
+            searchInput.addEventListener("input", (e) => {
+                const searchValue = e.target.value.toLowerCase();
+
+                shopItems.innerHTML = "";
+                detailsContainer.style.display = "none";
+                cartContainer.style.display = "none";
+
+                const filteredData = data.filter(item => item.title.toLowerCase().includes(searchValue));
+
+                filteredData.forEach(product => {
+                    renderShopItem(product);
+                })
+                if(filteredData.length === 0){
+                    const noResult = document.createElement("p");
+                    noResult.innerText = "No Items match your search.";
+                    shopItems.appendChild(noResult);
+                }
+            })
+
             detailsBackButton.addEventListener("click", () => {
                 shopItems.style.display = "grid";
                 detailsContainer.style.display = "none";
